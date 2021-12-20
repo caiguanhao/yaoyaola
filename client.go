@@ -35,21 +35,26 @@ type (
 	}
 
 	RedPocket struct {
-		// Defaults to RedPocketTypePersonal, set to
-		// RedPocketTypeEnterprise to send red pocket over 200 yuan
+		// Defaults to RedPocketTypePersonal (user must click a red
+		// pocket to receive)
+		// RedPocketTypeEnterprise (user receives red pocket
+		// automatically, allowed to send red pocket over 200 yuan)
 		Type RedPocketType
 
 		// Money in cents of a red pocket, must not be less than 30
+		// (0.3 yuan)
 		Cents int
 
-		// Once SendRedPocket() succeeds, you'll receive a new
-		// Wechat message like this:
+		// Once SendRedPocket() with RedPocketTypePersonal succeeds,
+		// you'll receive a new Wechat message like this:
 		//  你参与{Title}，成功获得{SenderName}赠送的红包，
 		//  点击消息打开，一起抢红包、拼手气吧！
 		//  点击消息拆开红包即可获得现金
 		// And on the details page, you'll see:
 		//  {SenderName}的红包
 		//  {Description}
+		// If the red pocket type is RedPocketTypeEnterprise, only
+		// Description is used
 		Title       string
 		Description string
 		SenderName  string

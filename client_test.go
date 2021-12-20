@@ -46,6 +46,7 @@ func TestSendRedPocket(t *testing.T) {
 		return
 	}
 	rp := RedPocket{
+		Type:           RedPocketTypeEnterprise,
 		Cents:          30,
 		Title:          "测试",
 		Description:    "测试红包",
